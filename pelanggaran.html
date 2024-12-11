@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelanggaran Siswa</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Pelanggaran Siswa</h2>
+        
+        <form id="pelanggaranForm" class="mb-4">
+            <div class="form-group">
+                <label for="namaSiswa">Nama Siswa:</label>
+                <input type="text" class="form-control" id="namaSiswa" required>
+            </div>
+            <div class="form-group">
+                <label for="jenisPelanggaran">Jenis Pelanggaran:</label>
+                <input type="text" class="form-control" id="jenisPelanggaran" required>
+            </div>
+            <div class="form-group">
+                <label for="tanggalPelanggaran">Tanggal Pelanggaran:</label>
+                <input type="date" class="form-control" id="tanggalPelanggaran" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Tambah Pelanggaran</button>
+        </form>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama Siswa</th>
+                    <th>Jenis Pelanggaran</th>
+                    <th>Tanggal Pelanggaran</th>
+                </tr>
+            </thead>
+            <tbody id="tabelPelanggaran">
+                <!-- Data pelanggaran akan ditambahkan di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const form = document.getElementById('pelanggaranForm');
+        const tabelPelanggaran = document.getElementById('tabelPelanggaran');
+        let no = 1;
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const namaSiswa = document.getElementById('namaSiswa').value;
+            const jenisPelanggaran = document.getElementById('jenisPelanggaran').value;
+            const tanggalPelanggaran = document.getElementById('tanggalPelanggaran').value;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${no++}</td>
+                <td>${namaSiswa}</td>
+                <td>${jenisPelanggaran}</td>
+                <td>${tanggalPelanggaran}</td>
+            `;
+            tabelPelanggaran.appendChild(row);
+
+            // Reset form
+            form.reset();
+        });
+    </script>
+</body>
+</html>
